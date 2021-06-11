@@ -38,6 +38,9 @@ public class GUI extends javax.swing.JFrame {
         jLabel_SongCurrent = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTree1 = new javax.swing.JTree();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Spotify Pirata");
@@ -63,6 +66,7 @@ public class GUI extends javax.swing.JFrame {
         jLabel_SongLength.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_SongLength.setText("120");
 
+        jLabel_SongCurrent.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_SongCurrent.setText("0");
 
         javax.swing.GroupLayout jPanel_NowPlayingLayout = new javax.swing.GroupLayout(jPanel_NowPlaying);
@@ -86,7 +90,7 @@ public class GUI extends javax.swing.JFrame {
                         .addComponent(jProgressBar_Song, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel_SongLength, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel_NowPlayingLayout.setVerticalGroup(
             jPanel_NowPlayingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -125,6 +129,42 @@ public class GUI extends javax.swing.JFrame {
         jTree1.setToolTipText("");
         jScrollPane1.setViewportView(jTree1);
 
+        jTable1.setBackground(new java.awt.Color(51, 51, 51));
+        jTable1.setForeground(new java.awt.Color(51, 51, 51));
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Cancion", "Album", "Artista", "Genero"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(3).setResizable(false);
+        }
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lab7p2_rafaelajuria/PlaylistIcon.png"))); // NOI18N
+
         javax.swing.GroupLayout jPanel_BackgroundLayout = new javax.swing.GroupLayout(jPanel_Background);
         jPanel_Background.setLayout(jPanel_BackgroundLayout);
         jPanel_BackgroundLayout.setHorizontalGroup(
@@ -132,13 +172,25 @@ public class GUI extends javax.swing.JFrame {
             .addComponent(jPanel_NowPlaying, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel_BackgroundLayout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel_BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 512, Short.MAX_VALUE)
+                    .addGroup(jPanel_BackgroundLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel_BackgroundLayout.setVerticalGroup(
             jPanel_BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_BackgroundLayout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel_BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel_BackgroundLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel_NowPlaying, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -193,6 +245,7 @@ public class GUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel_Artist;
     private javax.swing.JLabel jLabel_MusicIcon;
     private javax.swing.JLabel jLabel_PlayPause;
@@ -203,6 +256,8 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel_NowPlaying;
     private javax.swing.JProgressBar jProgressBar_Song;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTree jTree1;
     // End of variables declaration//GEN-END:variables
 }
