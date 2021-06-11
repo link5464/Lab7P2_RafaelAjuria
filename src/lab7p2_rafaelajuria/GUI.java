@@ -5,6 +5,8 @@
  */
 package lab7p2_rafaelajuria;
 
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
@@ -13,6 +15,7 @@ import javax.swing.tree.DefaultTreeModel;
  * @author rajur
  */
 public class GUI extends javax.swing.JFrame {
+    ArrayList<Artista> Datos = new ArrayList();
 
     /**
      * Creates new form GUI
@@ -30,6 +33,8 @@ public class GUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPopupMenu_MenuLibreria = new javax.swing.JPopupMenu();
+        jMenuItem_AgregarArtista = new javax.swing.JMenuItem();
         jPanel_Background = new javax.swing.JPanel();
         jPanel_NowPlaying = new javax.swing.JPanel();
         jLabel_MusicIcon = new javax.swing.JLabel();
@@ -48,6 +53,9 @@ public class GUI extends javax.swing.JFrame {
         jLabel_LikedSongsIcon = new javax.swing.JLabel();
         jLabel_Playlist = new javax.swing.JLabel();
         jLabel_NombrePlaylist = new javax.swing.JLabel();
+
+        jMenuItem_AgregarArtista.setText("Agregar");
+        jPopupMenu_MenuLibreria.add(jMenuItem_AgregarArtista);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Spotify Pirata");
@@ -148,6 +156,11 @@ public class GUI extends javax.swing.JFrame {
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Libreria");
         jTree_Libreria.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
         jTree_Libreria.setToolTipText("");
+        jTree_Libreria.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTree_LibreriaMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTree_Libreria);
 
         jTable_Playlist.setBackground(new java.awt.Color(51, 51, 51));
@@ -246,18 +259,26 @@ public class GUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel_MusicIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_MusicIconMouseClicked
+        Datos.add(new Artista("LilNasX","X","Z","A","B"));
+        AdministrarDatos ap = new AdministrarDatos("./Datos.pirata");
+        ap.LoadMusic();
+        ap.setDatos(Datos);
+        ap.WriteFile();
+        JOptionPane.showMessageDialog(this,
+                "Archivo Agregado con Exito!");
+        
         // ConstruitLibreria
         DefaultTreeModel Libreria=(DefaultTreeModel) jTree_Libreria.getModel();
         DefaultMutableTreeNode Root = (DefaultMutableTreeNode) Libreria.getRoot();
         for(int i=0;i<2;i++)//Agregar Artistas
         {
-           DefaultMutableTreeNode Artista = new DefaultMutableTreeNode("LilNasX");
+           DefaultMutableTreeNode Artista = new DefaultMutableTreeNode(new Artista("LilNasX","X","Z","A","B"));
            Root.add(Artista);
            for(int j=0;j<2;j++)//Agregar Albumes
            {
                DefaultMutableTreeNode Album = new DefaultMutableTreeNode("7 EP");
                Artista.add(Album);
-               for(int k=0;k<2;k++)
+               for(int k=0;k<2;k++)//Agregar Canciones
                {
                 DefaultMutableTreeNode Cancion = new DefaultMutableTreeNode("Montero");
                 Album.add(Cancion);   
@@ -266,6 +287,23 @@ public class GUI extends javax.swing.JFrame {
         }
         Libreria.reload();
     }//GEN-LAST:event_jLabel_MusicIconMouseClicked
+
+    private void jTree_LibreriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTree_LibreriaMouseClicked
+        // TODO add your handling code here:
+        if(evt.isMetaDown()){
+            //seleccionar un nodo con click derecho
+            int row = jTree_Libreria.getClosestRowForLocation(
+                               evt.getX(), evt.getY());   
+            jTree_Libreria.setSelectionRow(row);             
+            Object v1=jTree_Libreria.getSelectionPath().getLastPathComponent();
+            NodoSeleccionado=(DefaultMutableTreeNode) v1;
+            
+            if(NodoSeleccionado.getUserObject() instanceof Artista){
+                ArtistaSeleccionado= (Artista) NodoSeleccionado.getUserObject();               
+                jPopupMenu_MenuLibreria.show(evt.getComponent(), evt.getX(), evt.getY());                
+            }            
+        }
+    }//GEN-LAST:event_jTree_LibreriaMouseClicked
 
     /**
      * @param args the command line arguments
@@ -301,6 +339,17 @@ public class GUI extends javax.swing.JFrame {
             }
         });
     }
+    
+    public void AgregarArtista()
+    {
+        Datos.add(new Artista("LilNasX","X","Z","A","B"));
+        AdministrarDatos ap = new AdministrarDatos("./Datos.pirata");
+        ap.LoadMusic();
+        ap.setDatos(Datos);
+        ap.WriteFile();
+        JOptionPane.showMessageDialog(this,
+                "Archivo Agregado con Exito!");
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel_Artist;
@@ -314,12 +363,16 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel_Song;
     private javax.swing.JLabel jLabel_SongCurrent;
     private javax.swing.JLabel jLabel_SongLength;
+    private javax.swing.JMenuItem jMenuItem_AgregarArtista;
     private javax.swing.JPanel jPanel_Background;
     private javax.swing.JPanel jPanel_NowPlaying;
+    private javax.swing.JPopupMenu jPopupMenu_MenuLibreria;
     private javax.swing.JProgressBar jProgressBar_Song;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable_Playlist;
     private javax.swing.JTree jTree_Libreria;
     // End of variables declaration//GEN-END:variables
+    DefaultMutableTreeNode NodoSeleccionado;
+    Artista ArtistaSeleccionado;
 }
