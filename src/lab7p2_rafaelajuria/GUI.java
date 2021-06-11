@@ -29,6 +29,15 @@ public class GUI extends javax.swing.JFrame {
 
         jPanel_Background = new javax.swing.JPanel();
         jPanel_NowPlaying = new javax.swing.JPanel();
+        jLabel_MusicIcon = new javax.swing.JLabel();
+        jLabel_Song = new javax.swing.JLabel();
+        jLabel_Artist = new javax.swing.JLabel();
+        jProgressBar_Song = new javax.swing.JProgressBar();
+        jLabel_PlayPause = new javax.swing.JLabel();
+        jLabel_SongLength = new javax.swing.JLabel();
+        jLabel_SongCurrent = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTree1 = new javax.swing.JTree();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Spotify Pirata");
@@ -38,27 +47,98 @@ public class GUI extends javax.swing.JFrame {
 
         jPanel_NowPlaying.setBackground(new java.awt.Color(0, 0, 0));
 
+        jLabel_MusicIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lab7p2_rafaelajuria/MusicIcon.png"))); // NOI18N
+        jLabel_MusicIcon.setToolTipText("");
+        jLabel_MusicIcon.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        jLabel_Song.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
+        jLabel_Song.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel_Song.setText("Montero");
+
+        jLabel_Artist.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel_Artist.setText("Lil Nas X");
+
+        jLabel_PlayPause.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lab7p2_rafaelajuria/PlayPauseIcon.png"))); // NOI18N
+
+        jLabel_SongLength.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel_SongLength.setText("120");
+
+        jLabel_SongCurrent.setText("0");
+
         javax.swing.GroupLayout jPanel_NowPlayingLayout = new javax.swing.GroupLayout(jPanel_NowPlaying);
         jPanel_NowPlaying.setLayout(jPanel_NowPlayingLayout);
         jPanel_NowPlayingLayout.setHorizontalGroup(
             jPanel_NowPlayingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 594, Short.MAX_VALUE)
+            .addGroup(jPanel_NowPlayingLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel_MusicIcon)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel_NowPlayingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel_NowPlayingLayout.createSequentialGroup()
+                        .addGroup(jPanel_NowPlayingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel_Song, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
+                            .addComponent(jLabel_Artist, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(89, 89, 89)
+                        .addComponent(jLabel_PlayPause))
+                    .addGroup(jPanel_NowPlayingLayout.createSequentialGroup()
+                        .addComponent(jLabel_SongCurrent, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jProgressBar_Song, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel_SongLength, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         jPanel_NowPlayingLayout.setVerticalGroup(
             jPanel_NowPlayingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 78, Short.MAX_VALUE)
+            .addGroup(jPanel_NowPlayingLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel_NowPlayingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel_MusicIcon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel_NowPlayingLayout.createSequentialGroup()
+                        .addGroup(jPanel_NowPlayingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel_SongLength)
+                            .addGroup(jPanel_NowPlayingLayout.createSequentialGroup()
+                                .addGroup(jPanel_NowPlayingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel_NowPlayingLayout.createSequentialGroup()
+                                        .addComponent(jLabel_Song)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel_Artist))
+                                    .addComponent(jLabel_PlayPause, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel_NowPlayingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jProgressBar_Song, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel_SongCurrent))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
+
+        jTree1.setBackground(new java.awt.Color(153, 153, 153));
+        jTree1.setForeground(new java.awt.Color(255, 255, 255));
+        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Libreria");
+        javax.swing.tree.DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Lil Nas X");
+        javax.swing.tree.DefaultMutableTreeNode treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("7 EP");
+        javax.swing.tree.DefaultMutableTreeNode treeNode4 = new javax.swing.tree.DefaultMutableTreeNode("Montero");
+        treeNode3.add(treeNode4);
+        treeNode2.add(treeNode3);
+        treeNode1.add(treeNode2);
+        jTree1.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        jTree1.setToolTipText("");
+        jScrollPane1.setViewportView(jTree1);
 
         javax.swing.GroupLayout jPanel_BackgroundLayout = new javax.swing.GroupLayout(jPanel_Background);
         jPanel_Background.setLayout(jPanel_BackgroundLayout);
         jPanel_BackgroundLayout.setHorizontalGroup(
             jPanel_BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel_NowPlaying, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel_BackgroundLayout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel_BackgroundLayout.setVerticalGroup(
             jPanel_BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_BackgroundLayout.createSequentialGroup()
-                .addGap(0, 309, Short.MAX_VALUE)
+            .addGroup(jPanel_BackgroundLayout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel_NowPlaying, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -66,7 +146,7 @@ public class GUI extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel_Background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel_Background, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -113,7 +193,16 @@ public class GUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel_Artist;
+    private javax.swing.JLabel jLabel_MusicIcon;
+    private javax.swing.JLabel jLabel_PlayPause;
+    private javax.swing.JLabel jLabel_Song;
+    private javax.swing.JLabel jLabel_SongCurrent;
+    private javax.swing.JLabel jLabel_SongLength;
     private javax.swing.JPanel jPanel_Background;
     private javax.swing.JPanel jPanel_NowPlaying;
+    private javax.swing.JProgressBar jProgressBar_Song;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTree jTree1;
     // End of variables declaration//GEN-END:variables
 }
