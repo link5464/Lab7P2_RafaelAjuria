@@ -13,17 +13,21 @@ public class Cancion {
     String Nombre;
     int Duracion;
     String Compositor;
+    String Artista;
+    String Album;
     String Distribuidor;
     Boolean Exclusiva;
     String Productor;
     String ArtistaInvitado;
 
-    public Cancion(String Nombre, int Duracion, String Compositor, String Distribuidor, Boolean Exclusiva) {
+    public Cancion(String Nombre, int Duracion, String Compositor, String Distribuidor, Boolean Exclusiva, String Artista, String Album) {
         this.Nombre = Nombre;
         this.Duracion = Duracion;
         this.Compositor = Compositor;
         this.Distribuidor = Distribuidor;
         this.Exclusiva = Exclusiva;
+        this.Artista = Artista;
+        this.Album=Album;
     }
 
     public String getNombre() {
@@ -72,6 +76,22 @@ public class Cancion {
 
     public void setProductor(String Productor) {
         this.Productor = Productor;
+    }
+
+    public String getArtista() {
+        return Artista;
+    }
+
+    public void setArtista(String Artista) {
+        this.Artista = Artista;
+    }
+
+    public String getAlbum() {
+        return Album;
+    }
+
+    public void setAlbum(String Album) {
+        this.Album = Album;
     }
 
     public String getArtistaInvitado() {
