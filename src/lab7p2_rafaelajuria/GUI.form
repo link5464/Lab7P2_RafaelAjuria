@@ -12,6 +12,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="jMenuItem1"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem_TituloActionPerformed"/>
+          </Events>
         </MenuItem>
         <MenuItem class="javax.swing.JMenuItem" name="jMenuItem_Agregar">
           <Properties>
@@ -87,18 +90,29 @@
               <Group type="102" alignment="0" attributes="0">
                   <Component id="jScrollPane1" min="-2" pref="150" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="1" attributes="0">
                       <Group type="102" attributes="0">
                           <Component id="jLabel_LikedSongsIcon" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel_Playlist" min="-2" pref="100" max="-2" attributes="0"/>
-                              <Component id="jLabel_NombrePlaylist" min="-2" pref="229" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jLabel_Playlist" min="-2" pref="100" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="jButton_CargarDatos" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jLabel_NombrePlaylist" min="-2" pref="229" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jButton_ActualizarLibreria" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
-                      <Component id="jScrollPane2" min="-2" pref="475" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Component id="jScrollPane2" min="-2" pref="475" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -112,9 +126,15 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jLabel_LikedSongsIcon" min="-2" max="-2" attributes="0"/>
                               <Group type="102" attributes="0">
-                                  <Component id="jLabel_Playlist" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="jLabel_Playlist" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jButton_CargarDatos" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jLabel_NombrePlaylist" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jLabel_NombrePlaylist" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jButton_ActualizarLibreria" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -226,7 +246,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Montero"/>
+                <Property name="text" type="java.lang.String" value="Cancion en Curso"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel_Artist">
@@ -234,7 +254,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Lil Nas X"/>
+                <Property name="text" type="java.lang.String" value="Artista"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JProgressBar" name="jProgressBar_Song">
@@ -396,6 +416,22 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Your Mix"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="jButton_CargarDatos">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Cargar Datos Guardados"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton_CargarDatosMouseClicked"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="jButton_ActualizarLibreria">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Actualizar Libreria"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton_ActualizarLibreriaMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
