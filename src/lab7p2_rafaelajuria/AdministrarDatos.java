@@ -41,6 +41,11 @@ public class AdministrarDatos {
         this.file = file;
     }
     
+    public void setNewArtista(Artista temp)
+    {
+        Datos.add(temp);
+    }
+    
     public void LoadMusic() {
         try {            
             Datos = new ArrayList();

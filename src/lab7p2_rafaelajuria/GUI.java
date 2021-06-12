@@ -198,6 +198,11 @@ public class GUI extends javax.swing.JFrame {
         }
 
         jLabel_LikedSongsIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lab7p2_rafaelajuria/PlaylistIcon.png"))); // NOI18N
+        jLabel_LikedSongsIcon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel_LikedSongsIconMouseClicked(evt);
+            }
+        });
 
         jLabel_Playlist.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
         jLabel_Playlist.setForeground(new java.awt.Color(255, 255, 255));
@@ -260,27 +265,27 @@ public class GUI extends javax.swing.JFrame {
 
     private void jLabel_MusicIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_MusicIconMouseClicked
         Datos.add(new Artista("LilNasX","X","Z","A","B"));
-        AdministrarDatos ap = new AdministrarDatos("./Datos.pirata");
-        ap.LoadMusic();
-        ap.setDatos(Datos);
-        ap.WriteFile();
-        JOptionPane.showMessageDialog(this,
-                "Archivo Agregado con Exito!");
-        
+        Datos.get(0).getAlbumes().add(new Album("NombreA","Fecha","Genero","Formato","Productor"));
+        ArrayList<Album> temp = Datos.get(0).getAlbumes();
+        temp.get(0).getCanciones().add(new Cancion("NombreC",120,"Compositor","Distribuidor",true,"Artista","Album"));
+        Datos.get(0).setAlbumes(temp);
+ 
         // ConstruitLibreria
         DefaultTreeModel Libreria=(DefaultTreeModel) jTree_Libreria.getModel();
         DefaultMutableTreeNode Root = (DefaultMutableTreeNode) Libreria.getRoot();
-        for(int i=0;i<2;i++)//Agregar Artistas
+        for(int i=0;i<Datos.size();i++)//Agregar Artistas
         {
-           DefaultMutableTreeNode Artista = new DefaultMutableTreeNode(new Artista("LilNasX","X","Z","A","B"));
+           DefaultMutableTreeNode Artista = new DefaultMutableTreeNode(new Artista(Datos.get(i).getNombre(),Datos.get(i).getGenero(),Datos.get(i).getDisquera(),Datos.get(i).getAlias(),Datos.get(i).getTipo()));
            Root.add(Artista);
-           for(int j=0;j<2;j++)//Agregar Albumes
+           for(int j=0;j<Datos.get(i).getAlbumes().size();j++)//Agregar Albumes
            {
-               DefaultMutableTreeNode Album = new DefaultMutableTreeNode("7 EP");
+               ArrayList<Album> AlbumTemp = Datos.get(i).getAlbumes();
+               DefaultMutableTreeNode Album = new DefaultMutableTreeNode(new Album(AlbumTemp.get(j).getNombre(),AlbumTemp.get(j).getFecha(),AlbumTemp.get(j).getGenero(),AlbumTemp.get(j).getFormato(),AlbumTemp.get(j).getProductor()));
                Artista.add(Album);
-               for(int k=0;k<2;k++)//Agregar Canciones
+               for(int k=0;k<AlbumTemp.get(j).getCanciones().size();k++)//Agregar Canciones
                {
-                DefaultMutableTreeNode Cancion = new DefaultMutableTreeNode("Montero");
+                ArrayList<Cancion> CancionTemp =AlbumTemp.get(j).getCanciones();
+                DefaultMutableTreeNode Cancion = new DefaultMutableTreeNode(new Cancion(CancionTemp.get(k).getNombre(),CancionTemp.get(k).getDuracion(),CancionTemp.get(k).getCompositor(),CancionTemp.get(k).getDistribuidor(),CancionTemp.get(k).getExclusiva(),CancionTemp.get(k).getArtista(),CancionTemp.get(k).getAlbum()));
                 Album.add(Cancion);   
                }
            }
@@ -304,6 +309,16 @@ public class GUI extends javax.swing.JFrame {
             }            
         }
     }//GEN-LAST:event_jTree_LibreriaMouseClicked
+
+    private void jLabel_LikedSongsIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_LikedSongsIconMouseClicked
+        // TODO add your handling code here:
+        AdministrarDatos Admin = new AdministrarDatos("./Datos.pirata");
+        Admin.LoadMusic();
+        Admin.setDatos(Datos);
+        Admin.WriteFile();
+        JOptionPane.showMessageDialog(this,
+                "Artista Agregado con Exito!");
+    }//GEN-LAST:event_jLabel_LikedSongsIconMouseClicked
 
     /**
      * @param args the command line arguments
@@ -340,16 +355,7 @@ public class GUI extends javax.swing.JFrame {
         });
     }
     
-    public void AgregarArtista()
-    {
-        Datos.add(new Artista("LilNasX","X","Z","A","B"));
-        AdministrarDatos ap = new AdministrarDatos("./Datos.pirata");
-        ap.LoadMusic();
-        ap.setDatos(Datos);
-        ap.WriteFile();
-        JOptionPane.showMessageDialog(this,
-                "Archivo Agregado con Exito!");
-    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel_Artist;

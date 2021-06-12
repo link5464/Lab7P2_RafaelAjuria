@@ -5,11 +5,13 @@
  */
 package lab7p2_rafaelajuria;
 
+import java.io.Serializable;
+
 /**
  *
  * @author rajur
  */
-public class Cancion {
+public class Cancion implements Serializable {
     String Nombre;
     int Duracion;
     String Compositor;
@@ -19,6 +21,11 @@ public class Cancion {
     Boolean Exclusiva;
     String Productor;
     String ArtistaInvitado;
+    
+    
+    
+    
+    private static final long SerialVersionUID=777L;
 
     public Cancion(String Nombre, int Duracion, String Compositor, String Distribuidor, Boolean Exclusiva, String Artista, String Album) {
         this.Nombre = Nombre;

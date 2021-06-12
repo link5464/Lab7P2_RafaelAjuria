@@ -5,19 +5,23 @@
  */
 package lab7p2_rafaelajuria;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author rajur
  */
-public class Album {
+public class Album implements Serializable{
     String Nombre;
     String Fecha;
     String Genero;
     String Formato;
     String Productor;
     ArrayList<Cancion> Canciones;
+    
+    
+    private static final long SerialVersionUID=777L;
 
     public Album(String Nombre, String Fecha, String Genero, String Formato, String Productor) {
         this.Canciones = new ArrayList();

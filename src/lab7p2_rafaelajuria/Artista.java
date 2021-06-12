@@ -5,13 +5,14 @@
  */
 package lab7p2_rafaelajuria;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author rajur
  */
-public class Artista {
+public class Artista implements Serializable {
     String Nombre;
     String Genero;
     String Disquera;
@@ -19,6 +20,10 @@ public class Artista {
     String Tipo;
     ArrayList<Album> Albumes;
 
+    
+    
+    private static final long SerialVersionUID=777L;
+    
     public Artista(String Nombre, String Genero, String Disquera, String Alias, String Tipo) {
         this.Albumes = new ArrayList();
         this.Nombre = Nombre;

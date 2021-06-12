@@ -347,6 +347,9 @@
               <Image iconType="3" name="/lab7p2_rafaelajuria/PlaylistIcon.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel_LikedSongsIconMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel_Playlist">
           <Properties>
