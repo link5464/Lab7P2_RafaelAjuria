@@ -62,6 +62,11 @@ public class GUI extends javax.swing.JFrame {
         jPopupMenu_MenuLibreria.add(jMenuItem_Titulo);
 
         jMenuItem_Agregar.setText("Agregar");
+        jMenuItem_Agregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_AgregarActionPerformed(evt);
+            }
+        });
         jPopupMenu_MenuLibreria.add(jMenuItem_Agregar);
 
         jMenuItem_Eliminar.setText("jMenuItem1");
@@ -108,6 +113,11 @@ public class GUI extends javax.swing.JFrame {
 
         jLabel_Pause.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lab7p2_rafaelajuria/Pause.png"))); // NOI18N
         jLabel_Pause.setToolTipText("");
+        jLabel_Pause.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel_PauseMouseClicked(evt);
+            }
+        });
 
         jLabel_Previous.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lab7p2_rafaelajuria/Previous.png"))); // NOI18N
         jLabel_Previous.setToolTipText("");
@@ -340,7 +350,7 @@ public class GUI extends javax.swing.JFrame {
             }
             else if(NodoSeleccionado.getUserObject() instanceof Cancion){
                 //ArtistaSeleccionado= (Artista) NodoSeleccionado.getUserObject();
-                jMenuItem_Titulo.setText("Menu Album");
+                jMenuItem_Titulo.setText("Menu Cancion");
                 jMenuItem_Agregar.setText("Agregar Cancion");
                 jMenuItem_Modificar.setText("Modificar Cancion");
                 jMenuItem_Eliminar.setText("Eliminar Cancion");                
@@ -401,6 +411,19 @@ public class GUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenuItem_EliminarActionPerformed
 
+    private void jMenuItem_AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_AgregarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem_AgregarActionPerformed
+
+    private void jLabel_PauseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_PauseMouseClicked
+        // TODO add your handling code here:
+        int Max=10;
+        jProgressBar_Song.setMaximum(Max*10);
+        jLabel_SongLength.setText("10");
+        ProgressBarThread AdminBarra = new ProgressBarThread(jProgressBar_Song,jLabel_SongCurrent);
+        AdminBarra.start();
+    }//GEN-LAST:event_jLabel_PauseMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -435,7 +458,7 @@ public class GUI extends javax.swing.JFrame {
             }
         });
     }
-    
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
