@@ -16,6 +16,7 @@ import javax.swing.tree.DefaultTreeModel;
  */
 public class GUI extends javax.swing.JFrame {
     ArrayList<Artista> Datos = new ArrayList();
+    ArrayList<Artista> Playlist = new ArrayList();
 
     /**
      * Creates new form GUI
@@ -34,7 +35,10 @@ public class GUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jPopupMenu_MenuLibreria = new javax.swing.JPopupMenu();
-        jMenuItem_AgregarArtista = new javax.swing.JMenuItem();
+        jMenuItem_Titulo = new javax.swing.JMenuItem();
+        jMenuItem_Agregar = new javax.swing.JMenuItem();
+        jMenuItem_Eliminar = new javax.swing.JMenuItem();
+        jMenuItem_Modificar = new javax.swing.JMenuItem();
         jPanel_Background = new javax.swing.JPanel();
         jPanel_NowPlaying = new javax.swing.JPanel();
         jLabel_MusicIcon = new javax.swing.JLabel();
@@ -54,8 +58,22 @@ public class GUI extends javax.swing.JFrame {
         jLabel_Playlist = new javax.swing.JLabel();
         jLabel_NombrePlaylist = new javax.swing.JLabel();
 
-        jMenuItem_AgregarArtista.setText("Agregar");
-        jPopupMenu_MenuLibreria.add(jMenuItem_AgregarArtista);
+        jMenuItem_Titulo.setText("jMenuItem1");
+        jPopupMenu_MenuLibreria.add(jMenuItem_Titulo);
+
+        jMenuItem_Agregar.setText("Agregar");
+        jPopupMenu_MenuLibreria.add(jMenuItem_Agregar);
+
+        jMenuItem_Eliminar.setText("jMenuItem1");
+        jMenuItem_Eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem_EliminarActionPerformed(evt);
+            }
+        });
+        jPopupMenu_MenuLibreria.add(jMenuItem_Eliminar);
+
+        jMenuItem_Modificar.setText("jMenuItem1");
+        jPopupMenu_MenuLibreria.add(jMenuItem_Modificar);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Spotify Pirata");
@@ -273,6 +291,7 @@ public class GUI extends javax.swing.JFrame {
         // ConstruitLibreria
         DefaultTreeModel Libreria=(DefaultTreeModel) jTree_Libreria.getModel();
         DefaultMutableTreeNode Root = (DefaultMutableTreeNode) Libreria.getRoot();
+        Root.removeAllChildren();
         for(int i=0;i<Datos.size();i++)//Agregar Artistas
         {
            DefaultMutableTreeNode Artista = new DefaultMutableTreeNode(new Artista(Datos.get(i).getNombre(),Datos.get(i).getGenero(),Datos.get(i).getDisquera(),Datos.get(i).getAlias(),Datos.get(i).getTipo()));
@@ -302,11 +321,37 @@ public class GUI extends javax.swing.JFrame {
             jTree_Libreria.setSelectionRow(row);             
             Object v1=jTree_Libreria.getSelectionPath().getLastPathComponent();
             NodoSeleccionado=(DefaultMutableTreeNode) v1;
+            jPopupMenu_MenuLibreria.show(evt.getComponent(), evt.getX(), evt.getY());
             
             if(NodoSeleccionado.getUserObject() instanceof Artista){
-                ArtistaSeleccionado= (Artista) NodoSeleccionado.getUserObject();               
-                jPopupMenu_MenuLibreria.show(evt.getComponent(), evt.getX(), evt.getY());                
-            }            
+                ArtistaSeleccionado= (Artista) NodoSeleccionado.getUserObject();
+                jMenuItem_Titulo.setText("Menu Artista");
+                jMenuItem_Agregar.setText("Agregar Artista");
+                jMenuItem_Modificar.setText("Modificar Artista");
+                jMenuItem_Eliminar.setText("Eliminar Artista");
+                
+            }
+            else if(NodoSeleccionado.getUserObject() instanceof Album){
+                //ArtistaSeleccionado= (Artista) NodoSeleccionado.getUserObject();
+                jMenuItem_Titulo.setText("Menu Album");
+                jMenuItem_Agregar.setText("Agregar Album");
+                jMenuItem_Modificar.setText("Modificar Album");
+                jMenuItem_Eliminar.setText("Eliminar Album");
+            }
+            else if(NodoSeleccionado.getUserObject() instanceof Cancion){
+                //ArtistaSeleccionado= (Artista) NodoSeleccionado.getUserObject();
+                jMenuItem_Titulo.setText("Menu Album");
+                jMenuItem_Agregar.setText("Agregar Cancion");
+                jMenuItem_Modificar.setText("Modificar Cancion");
+                jMenuItem_Eliminar.setText("Eliminar Cancion");                
+            }
+            else
+            {
+              jMenuItem_Titulo.setText("Menu Libreria");
+              jMenuItem_Agregar.setText("---");
+              jMenuItem_Modificar.setText("---");
+              jMenuItem_Eliminar.setText("---"); 
+            }
         }
     }//GEN-LAST:event_jTree_LibreriaMouseClicked
 
@@ -319,6 +364,42 @@ public class GUI extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this,
                 "Artista Agregado con Exito!");
     }//GEN-LAST:event_jLabel_LikedSongsIconMouseClicked
+
+    private void jMenuItem_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_EliminarActionPerformed
+        // TODO add your handling code here:
+        if(NodoSeleccionado.getUserObject() instanceof Artista)
+        {
+         for(int i=0;i<Datos.size();i++)
+         {
+            if(((Artista) NodoSeleccionado.getUserObject()).getNombre().equals(Datos.get(i).getNombre()))
+            {
+                Datos.remove(i);
+                JOptionPane.showMessageDialog(this,
+                "Artista Eliminado con Exito!");
+            }
+            
+         }
+        }
+        if(NodoSeleccionado.getUserObject() instanceof Album)
+        {
+            
+            for(int i=0;i<Datos.size();i++)
+         {
+             if(NodoSeleccionado.getParent().toString().equals(Datos.get(i).getNombre()))
+             {
+                 ArrayList<Album> TempAlbum=Datos.get(i).getAlbumes();
+                 for(int j=0;j<TempAlbum.size();j++)
+                 {
+                    if(((Album) NodoSeleccionado.getUserObject()).getNombre().equals(TempAlbum.get(j).getNombre()))
+                    {
+                        TempAlbum.remove(j);
+                        Datos.get(i).setAlbumes(TempAlbum);
+                    }
+                 }
+             }
+         }
+        }
+    }//GEN-LAST:event_jMenuItem_EliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -369,7 +450,10 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel_Song;
     private javax.swing.JLabel jLabel_SongCurrent;
     private javax.swing.JLabel jLabel_SongLength;
-    private javax.swing.JMenuItem jMenuItem_AgregarArtista;
+    private javax.swing.JMenuItem jMenuItem_Agregar;
+    private javax.swing.JMenuItem jMenuItem_Eliminar;
+    private javax.swing.JMenuItem jMenuItem_Modificar;
+    private javax.swing.JMenuItem jMenuItem_Titulo;
     private javax.swing.JPanel jPanel_Background;
     private javax.swing.JPanel jPanel_NowPlaying;
     private javax.swing.JPopupMenu jPopupMenu_MenuLibreria;

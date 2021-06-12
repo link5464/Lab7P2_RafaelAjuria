@@ -22,7 +22,7 @@ public class Artista implements Serializable {
 
     
     
-    private static final long SerialVersionUID=777L;
+    private static final long serialVersionUID=777L;
     
     public Artista(String Nombre, String Genero, String Disquera, String Alias, String Tipo) {
         this.Albumes = new ArrayList();

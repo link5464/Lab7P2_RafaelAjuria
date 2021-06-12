@@ -25,7 +25,7 @@ public class Cancion implements Serializable {
     
     
     
-    private static final long SerialVersionUID=777L;
+    private static final long serialVersionUID=777L;
 
     public Cancion(String Nombre, int Duracion, String Compositor, String Distribuidor, Boolean Exclusiva, String Artista, String Album) {
         this.Nombre = Nombre;
@@ -107,6 +107,11 @@ public class Cancion implements Serializable {
 
     public void setArtistaInvitado(String ArtistaInvitado) {
         this.ArtistaInvitado = ArtistaInvitado;
+    }
+
+    @Override
+    public String toString() {
+        return Nombre;
     }
     
     

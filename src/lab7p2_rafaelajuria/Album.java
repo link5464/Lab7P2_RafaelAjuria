@@ -21,7 +21,7 @@ public class Album implements Serializable{
     ArrayList<Cancion> Canciones;
     
     
-    private static final long SerialVersionUID=777L;
+    private static final long serialVersionUID=777L;
 
     public Album(String Nombre, String Fecha, String Genero, String Formato, String Productor) {
         this.Canciones = new ArrayList();
