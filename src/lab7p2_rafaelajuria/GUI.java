@@ -59,6 +59,7 @@ public class GUI extends javax.swing.JFrame {
         jLabel_NombrePlaylist = new javax.swing.JLabel();
         jButton_CargarDatos = new javax.swing.JButton();
         jButton_ActualizarLibreria = new javax.swing.JButton();
+        jButton_Guardar = new javax.swing.JButton();
 
         jMenuItem_Titulo.setText("jMenuItem1");
         jMenuItem_Titulo.addActionListener(new java.awt.event.ActionListener() {
@@ -261,6 +262,13 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
+        jButton_Guardar.setText("Guardar");
+        jButton_Guardar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton_GuardarMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel_BackgroundLayout = new javax.swing.GroupLayout(jPanel_Background);
         jPanel_Background.setLayout(jPanel_BackgroundLayout);
         jPanel_BackgroundLayout.setHorizontalGroup(
@@ -269,23 +277,23 @@ public class GUI extends javax.swing.JFrame {
             .addGroup(jPanel_BackgroundLayout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel_BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel_BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel_BackgroundLayout.createSequentialGroup()
                         .addComponent(jLabel_LikedSongsIcon)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel_BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel_BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel_BackgroundLayout.createSequentialGroup()
                                 .addComponent(jLabel_Playlist, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton_Guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jButton_CargarDatos))
                             .addGroup(jPanel_BackgroundLayout.createSequentialGroup()
                                 .addComponent(jLabel_NombrePlaylist, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton_ActualizarLibreria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                    .addGroup(jPanel_BackgroundLayout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 475, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(3, 3, 3)))
-                .addContainerGap())
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 475, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel_BackgroundLayout.setVerticalGroup(
             jPanel_BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -299,7 +307,8 @@ public class GUI extends javax.swing.JFrame {
                             .addGroup(jPanel_BackgroundLayout.createSequentialGroup()
                                 .addGroup(jPanel_BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel_Playlist)
-                                    .addComponent(jButton_CargarDatos))
+                                    .addComponent(jButton_CargarDatos)
+                                    .addComponent(jButton_Guardar))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel_BackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel_NombrePlaylist)
@@ -364,17 +373,14 @@ public class GUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(NodoSeleccionado.getUserObject() instanceof Cancion)
         {
-            String s = (String)JOptionPane.showInputDialog(
-                    null,
-                    "Complete the sentence:\n"
-                    + "\"Green eggs and...\"",null);
-            
-            
-            
-            
-            
+            String Cancion = (String)JOptionPane.showInputDialog(null,"Nombre de la Cancion",null);
+            int Duracion = Integer.parseInt((String)JOptionPane.showInputDialog(null,"Duracion de la Cancion",null));
+            String Compositor = (String)JOptionPane.showInputDialog(null,"Compositor de la Cancion",null);
+            String Distribuidor = (String)JOptionPane.showInputDialog(null,"Distribuidor de la Cancion",null);
+            String Artista = (String)JOptionPane.showInputDialog(null,"Artista de la Cancion",null);
+            String Album = (String)JOptionPane.showInputDialog(null,"Album de la Cancion",null);
         ArrayList<Album> temp = Datos.get(0).getAlbumes();
-        temp.get(0).getCanciones().add(new Cancion("Cancion",120,"Compositor","Distribuidor",true,"Artista","Album"));
+        temp.get(0).getCanciones().add(new Cancion(Cancion,Duracion,Compositor,Distribuidor,true,Artista,Album));
         Datos.get(0).setAlbumes(temp);  
         }
     }//GEN-LAST:event_jMenuItem_AgregarActionPerformed
@@ -385,12 +391,7 @@ public class GUI extends javax.swing.JFrame {
 
     private void jLabel_LikedSongsIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel_LikedSongsIconMouseClicked
         // TODO add your handling code here:
-        AdministrarDatos Admin = new AdministrarDatos("./Datos.pirata");
-        Admin.LoadMusic();
-        Admin.setDatos(Datos);
-        Admin.WriteFile();
-        JOptionPane.showMessageDialog(this,
-            "Artista Agregado con Exito!");
+        
     }//GEN-LAST:event_jLabel_LikedSongsIconMouseClicked
 
     private void jTree_LibreriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTree_LibreriaMouseClicked
@@ -507,6 +508,16 @@ public class GUI extends javax.swing.JFrame {
         Libreria.reload();
     }//GEN-LAST:event_jButton_ActualizarLibreriaMouseClicked
 
+    private void jButton_GuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton_GuardarMouseClicked
+        // TODO add your handling code here:
+        AdministrarDatos Admin = new AdministrarDatos("./Datos.pirata");
+        Admin.LoadMusic();
+        Admin.setDatos(Datos);
+        Admin.WriteFile();
+        JOptionPane.showMessageDialog(this,
+            "Datos Guardados!");
+    }//GEN-LAST:event_jButton_GuardarMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -547,6 +558,7 @@ public class GUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton_ActualizarLibreria;
     private javax.swing.JButton jButton_CargarDatos;
+    private javax.swing.JButton jButton_Guardar;
     private javax.swing.JLabel jLabel_Artist;
     private javax.swing.JLabel jLabel_LikedSongsIcon;
     private javax.swing.JLabel jLabel_MusicIcon;
